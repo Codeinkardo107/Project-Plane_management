@@ -6,9 +6,8 @@ import ast
 app = Flask(__name__)
 CSV_file = 'data.csv'
 
-# ----------------------------
+
 # Utility Functions
-# ----------------------------
 def load_data():
     if not os.path.exists(CSV_file):
         return []
