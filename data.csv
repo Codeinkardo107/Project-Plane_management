@@ -1,0 +1,11 @@
+id,name,model,capacity,flight_dates
+101,Air India Express,Boeing 737,180,"['2025-06-01', '2025-06-03', '2025-06-05']"
+201,IndiGo,Airbus A320,186,"['2025-06-02', '2025-06-06']"
+302,SpiceJet,Bombardier Q400,78,"['2025-06-07', '2025-06-01']"
+402,Vistara,Airbus A321,220,['2025-06-04']
+503,Go First,Airbus A320neo,186,"['2025-06-03', '2025-06-06']"
+604,Akasa Air,Boeing 737 MAX,189,"['2025-06-05', '2025-06-07']"
+744,AirAsia India,Airbus A320,180,"['2025-06-02', '2025-06-08']"
+812,Alliance Air,ATR 72-600,70,"['2025-06-01', '2025-06-03']"
+96,Blue Dart Aviation,Boeing 757,200,"['2025-06-04', '2025-06-06']"
+107,Quikjet Airlines,Boeing 737-800F,210,"['2025-06-05', '2025-06-07']"
