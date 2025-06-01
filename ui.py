@@ -5,7 +5,7 @@ import pandas as pd
 API_url = "http://127.0.0.1:5000"
 
 st.set_page_config(page_title="Plane Management System", layout="wide")
-st.title("✈️ Plane Management System")
+st.title("✈️ Plane Management")
 
 
 # Add Plane Section
