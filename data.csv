@@ -1,6 +1,6 @@
 id,name,model,capacity,date,from,to,status
 101,Air India Express,Boeing 737,180,2025-06-01,Mumbai,Ahmedabad,Completed
-101,Air India Express,Boeing 737,180,2025-06-03,Kolkata,Dubai,Completed
+101,Air India Express,Boeing 737,180,2025-07-03,Kolkata,Dubai,Delayed
 101,Air India Express,Boeing 737,180,2025-06-05,Pune,Singapore,Completed
 201,IndiGo,Airbus A320,186,2025-06-02,Pune,Hyderabad,Completed
 201,IndiGo,Airbus A320,186,2025-06-06,Bangalore,London,Completed
@@ -10,8 +10,8 @@ id,name,model,capacity,date,from,to,status
 503,Go First,Airbus A320neo,186,2025-06-08,Chennai,Bangalore,Completed
 503,Go First,Airbus A320neo,186,2025-05-08,Delhi,Toronto,Completed
 604,Akasa Air,Boeing 737 MAX,189,2025-06-05,Pune,Mumbai,Completed
-604,Akasa Air,Boeing 737 MAX,189,2025-06-07,Bangalore,Sydney,Completed
-744,AirAsia India,Airbus A320,180,2025-06-02,Bangalore,Tokyo,Completed
+604,Akasa Air,Boeing 737 MAX,189,2025-08-07,Bangalore,Sydney,Completed
+744,AirAsia India,Airbus A320,180,2025-08-02,Bangalore,Tokyo,Completed
 744,AirAsia India,Airbus A320,180,2025-09-08,Bangalore,New York,Not Taken Off
 812,Alliance Air,ATR 72-600,70,2025-08-01,Pune,Ahmedabad,Not Taken Off
 812,Alliance Air,ATR 72-600,70,2025-06-03,Bangalore,Hong Kong,Completed
@@ -31,8 +31,8 @@ id,name,model,capacity,date,from,to,status
 113,Zoom Air,CRJ-200,50,2025-06-06,Pune,Delhi,Completed
 113,Zoom Air,CRJ-200,50,2025-06-09,Kolkata,Chennai,Completed
 124,Star Air,Embraer ERJ-145,50,2025-06-01,Kolkata,Mumbai,Completed
-124,Star Air,Embraer ERJ-145,50,2025-07-03,Kolkata,Ahmedabad,Not Taken Off
-124,Star Air,Embraer ERJ-145,50,2025-07-07,Mumbai,Hyderabad,Not Taken Off
+124,Star Air,Embraer ERJ-145,50,2025-07-03,Kolkata,Ahmedabad,Delayed
+124,Star Air,Embraer ERJ-145,50,2025-07-07,Mumbai,Hyderabad,Delayed
 115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-02,Hyderabad,Mumbai,Not Taken Off
 115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-05,Ahmedabad,Chennai,Not Taken Off
 115,Tata SIA Airlines,Boeing 737 MAX,189,2025-08-08,Ahmedabad,Chennai,Not Taken Off
@@ -59,7 +59,7 @@ id,name,model,capacity,date,from,to,status
 802,TruJet,ATR 72,72,2025-06-03,Chennai,Dubai,Completed
 802,TruJet,ATR 72,72,2025-06-06,Mumbai,Jaipur,Completed
 915,Air India,Boeing 787 Dreamliner,240,2025-08-05,Delhi,New York,Not Taken Off
-915,Air India,Boeing 787 Dreamliner,240,2025-07-07,Delhi,Frankfurt,Not Taken Off
+915,Air India,Boeing 787 Dreamliner,240,2025-07-07,Delhi,Frankfurt,Delayed
 723,Star Air,Embraer ERJ-145,50,2025-06-02,Hyderabad,Pune,Completed
 723,Star Air,Embraer ERJ-145,50,2025-06-08,Pune,Doha,Completed
 934,Alliance Air,ATR 72-600,70,2025-07-04,Goa,Mumbai,Completed
