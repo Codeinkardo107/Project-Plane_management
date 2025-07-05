@@ -1,41 +1,41 @@
-id,name,model,capacity,date,from,to,flight_status
+id,name,model,capacity,date,from,to,status
 101,Air India Express,Boeing 737,180,2025-06-01,Mumbai,Ahmedabad,Completed
 101,Air India Express,Boeing 737,180,2025-06-03,Kolkata,Dubai,Completed
-101,Air India Express,Boeing 737,180,2025-06-05,Pune,Singapore,Delayed
+101,Air India Express,Boeing 737,180,2025-06-05,Pune,Singapore,Completed
 201,IndiGo,Airbus A320,186,2025-06-02,Pune,Hyderabad,Completed
 201,IndiGo,Airbus A320,186,2025-06-06,Bangalore,London,Completed
 302,SpiceJet,Bombardier Q400,78,2025-06-07,Mumbai,Pune,Completed
-302,SpiceJet,Bombardier Q400,78,2025-08-01,Pune,Bangkok,Completed
-402,Vistara,Airbus A321,220,2025-06-08,Bangalore,Paris,Delayed
+302,SpiceJet,Bombardier Q400,78,2025-08-01,Pune,Bangkok,Not Taken Off
+402,Vistara,Airbus A321,220,2025-06-08,Bangalore,Paris,Completed
 503,Go First,Airbus A320neo,186,2025-06-08,Chennai,Bangalore,Completed
 503,Go First,Airbus A320neo,186,2025-05-08,Delhi,Toronto,Completed
 604,Akasa Air,Boeing 737 MAX,189,2025-06-05,Pune,Mumbai,Completed
-604,Akasa Air,Boeing 737 MAX,189,2025-06-07,Bangalore,Sydney,Delayed
+604,Akasa Air,Boeing 737 MAX,189,2025-06-07,Bangalore,Sydney,Completed
 744,AirAsia India,Airbus A320,180,2025-06-02,Bangalore,Tokyo,Completed
-744,AirAsia India,Airbus A320,180,2025-09-08,Bangalore,New York,Completed
-812,Alliance Air,ATR 72-600,70,2025-08-01,Pune,Ahmedabad,Completed
-812,Alliance Air,ATR 72-600,70,2025-06-03,Bangalore,Hong Kong,Cancelled
+744,AirAsia India,Airbus A320,180,2025-09-08,Bangalore,New York,Not Taken Off
+812,Alliance Air,ATR 72-600,70,2025-08-01,Pune,Ahmedabad,Not Taken Off
+812,Alliance Air,ATR 72-600,70,2025-06-03,Bangalore,Hong Kong,Completed
 96,Blue Dart Aviation,Boeing 757,200,2025-06-04,Ahmedabad,Mumbai,Completed
 96,Blue Dart Aviation,Boeing 757,200,2025-06-06,Mumbai,Hyderabad,Completed
 107,Quikjet Airlines,Boeing 737-800F,210,2025-06-05,Hyderabad,Delhi,Completed
-107,Quikjet Airlines,Boeing 737-800F,210,2025-06-07,Ahmedabad,Pune,Delayed
-110,SpiceJet,Boeing 737-122F,200,2025-07-10,Pune,Delhi,Completed
+107,Quikjet Airlines,Boeing 737-800F,210,2025-06-07,Ahmedabad,Pune,Completed
+110,SpiceJet,Boeing 737-122F,200,2025-07-10,Pune,Delhi,Not Taken Off
 110,SpiceJet,Boeing 737-122F,200,2025-03-07,Bangalore,Pune,Completed
 151,TruJet,ATR 72,72,2025-06-02,Chennai,Hyderabad,Completed
-151,TruJet,ATR 72,72,2025-06-04,Kolkata,Delhi,Delayed
+151,TruJet,ATR 72,72,2025-06-04,Kolkata,Delhi,Completed
 151,TruJet,ATR 72,72,2025-06-06,Ahmedabad,Chennai,Completed
 112,AirAsia India,Airbus A320neo,186,2025-06-01,Chennai,Ahmedabad,Completed
 112,AirAsia India,Airbus A320neo,186,2025-06-05,Mumbai,Delhi,Completed
 112,AirAsia India,Airbus A320neo,186,2025-06-08,Kolkata,Ahmedabad,Completed
 113,Zoom Air,CRJ-200,50,2025-06-03,Chennai,Bangalore,Completed
-113,Zoom Air,CRJ-200,50,2025-06-06,Pune,Delhi,Cancelled
+113,Zoom Air,CRJ-200,50,2025-06-06,Pune,Delhi,Completed
 113,Zoom Air,CRJ-200,50,2025-06-09,Kolkata,Chennai,Completed
 124,Star Air,Embraer ERJ-145,50,2025-06-01,Kolkata,Mumbai,Completed
-124,Star Air,Embraer ERJ-145,50,2025-07-03,Kolkata,Ahmedabad,Completed
-124,Star Air,Embraer ERJ-145,50,2025-07-07,Mumbai,Hyderabad,Delayed
-115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-02,Hyderabad,Mumbai,Completed
-115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-05,Ahmedabad,Chennai,Completed
-115,Tata SIA Airlines,Boeing 737 MAX,189,2025-08-08,Ahmedabad,Chennai,Completed
+124,Star Air,Embraer ERJ-145,50,2025-07-03,Kolkata,Ahmedabad,Not Taken Off
+124,Star Air,Embraer ERJ-145,50,2025-07-07,Mumbai,Hyderabad,Not Taken Off
+115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-02,Hyderabad,Mumbai,Not Taken Off
+115,Tata SIA Airlines,Boeing 737 MAX,189,2025-09-05,Ahmedabad,Chennai,Not Taken Off
+115,Tata SIA Airlines,Boeing 737 MAX,189,2025-08-08,Ahmedabad,Chennai,Not Taken Off
 116,Indian Air Force,C-17 Globemaster,300,2025-06-01,Chennai,Kolkata,Completed
 116,Indian Air Force,C-17 Globemaster,300,2025-06-04,Chennai,Mumbai,Completed
 131,Cargo India,Boeing 747-8F,140,2025-06-03,Hyderabad,Chennai,Completed
@@ -45,28 +45,28 @@ id,name,model,capacity,date,from,to,flight_status
 123,Air Carnival,ATR 72,70,2025-06-01,Mumbai,Chennai,Completed
 123,Air Carnival,ATR 72,70,2025-06-06,Pune,Mumbai,Completed
 130,Indamer Aviation,Hawker 900XP,8,2025-06-04,Delhi,Bangalore,Completed
-130,Indamer Aviation,Hawker 900XP,8,2025-06-07,Hyderabad,Chennai,Delayed
+130,Indamer Aviation,Hawker 900XP,8,2025-06-07,Hyderabad,Chennai,Completed
 401,Vistara,Airbus A320neo,186,2025-06-02,Delhi,London,Completed
 401,Vistara,Airbus A320neo,186,2025-06-06,Chennai,Mumbai,Completed
 507,SpiceJet,Bombardier Q400,78,2025-06-04,Hyderabad,Dubai,Completed
 507,SpiceJet,Bombardier Q400,78,2025-06-07,Ahmedabad,Goa,Completed
 613,Go First,Airbus A320,180,2025-06-03,Kolkata,Bangkok,Completed
-613,Go First,Airbus A320,180,2025-06-05,Delhi,Chandigarh,Cancelled
+613,Go First,Airbus A320,180,2025-06-05,Delhi,Chandigarh,Completed
 728,AirAsia India,Airbus A321,220,2025-06-01,Mumbai,Singapore,Completed
 728,AirAsia India,Airbus A321,220,2025-06-08,Chennai,Kolkata,Completed
 835,Akasa Air,Boeing 737 MAX,189,2025-06-05,Pune,Colombo,Completed
 835,Akasa Air,Boeing 737 MAX,189,2025-06-09,Bangalore,Delhi,Completed
 802,TruJet,ATR 72,72,2025-06-03,Chennai,Dubai,Completed
 802,TruJet,ATR 72,72,2025-06-06,Mumbai,Jaipur,Completed
-915,Air India,Boeing 787 Dreamliner,240,2025-08-05,Delhi,New York,Completed
-915,Air India,Boeing 787 Dreamliner,240,2025-07-07,Delhi,Frankfurt,Completed
+915,Air India,Boeing 787 Dreamliner,240,2025-08-05,Delhi,New York,Not Taken Off
+915,Air India,Boeing 787 Dreamliner,240,2025-07-07,Delhi,Frankfurt,Not Taken Off
 723,Star Air,Embraer ERJ-145,50,2025-06-02,Hyderabad,Pune,Completed
 723,Star Air,Embraer ERJ-145,50,2025-06-08,Pune,Doha,Completed
 934,Alliance Air,ATR 72-600,70,2025-07-04,Goa,Mumbai,Completed
-934,Alliance Air,ATR 72-600,70,2025-07-06,Mumbai,Male,Completed
+934,Alliance Air,ATR 72-600,70,2025-07-06,Mumbai,Male,Not Taken Off
 947,Quikjet Airlines,Boeing 737-800F,210,2025-06-03,Chennai,Kuala Lumpur,Completed
 947,Quikjet Airlines,Boeing 737-800F,210,2025-06-07,Delhi,Ahmedabad,Completed
 958,Blue Dart Aviation,Boeing 757,200,2025-06-01,Mumbai,Colombo,Completed
 958,Blue Dart Aviation,Boeing 757,200,2025-06-04,Hyderabad,Lucknow,Completed
-969,IndiGo,Airbus A321XLR,240,2025-10-02,Bangalore,Paris,Completed
-969,IndiGo,Airbus A321XLR,240,2025-10-05,Mumbai,Delhi,Completed
+969,IndiGo,Airbus A321XLR,240,2025-10-02,Bangalore,Paris,Not Taken Off
+969,IndiGo,Airbus A321XLR,240,2025-10-05,Mumbai,Delhi,Not Taken Off
