@@ -1,40 +1,61 @@
 import streamlit as st
 import requests
 import pandas as pd
+import ast
+from collections import defaultdict
 
 API_url = "http://127.0.0.1:5000"
 
-st.set_page_config(page_title="Plane Management System", layout="wide")
-st.title("✈️ Plane Management")
 
+
+# ✅ MUST be first Streamlit command
+st.set_page_config(page_title="My Flight App", page_icon="🛫", layout="wide")
+
+# Then your usual app logic
+st.title("Welcome to the Plane Dashboard")
+
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+#st.set_page_config(page_title="Plane Management System", layout="wide")
+# Also will add flight destination for further use
 
 # Add Plane Section
 # Create 3 columns: content on the left, right and empty in the middle
 left_col, _, right_col = st.columns([2, 1, 1])
 with left_col:
-    st.markdown("## ➕ Add a New Plane")
+    st.markdown("## ➕ Add a New Plane. ")
     ID = st.number_input("ID", min_value=1, step=1)
     name = st.text_input("Plane Name")
     model = st.text_input("Model")
     capacity = st.number_input("Capacity", min_value=1, step=1)
-    flight_dates_input = st.text_area(
-        "Flight Dates (comma-separated, format: YYYY-MM-DD)",
-        placeholder="e.g., 2025-06-01, 2025-05-10"
+    from1 = st.text_input("Flight From")
+    to1 = st.text_input("Flight destination")
+    flight_date = st.text_input(
+        "Flight Date (format: YYYY-MM-DD)",
+        placeholder="e.g., 2025-05-10"
+    )
+    flight_status = st.text_input(
+        "Flight Status",
+        placeholder="e.g., Not Taken Off, Completed, Delayed"
     )
     submitted = st.button("Add Plane")
 
     if submitted:
-        flight_dates = [d.strip() for d in flight_dates_input.split(",") if d.strip()]
-        if not ID or not name or not model or not flight_dates:
+        if not ID or not name or not model or not flight_date or not from1 or not to1 or not flight_status:
             st.error("Please fill in all fields and enter at least one flight date.")
         else:
             try:
+
                 res = requests.post(f"{API_url}/add_plane", json={
                     "id": ID,
                     "name": name,
                     "model": model,
                     "capacity": int(capacity),
-                    "flight_dates": flight_dates
+                    "flight_date": flight_date,
+                    "from": from1,
+                    "to": to1,
+                    "status": flight_status,
                 })
                 if res.status_code == 201:
                     st.success(f"✅ Plane '{name}' added successfully!")
@@ -48,9 +69,18 @@ with left_col:
 with right_col:
     st.markdown("## ➕ Add a New Flight")
     ID = st.number_input("ID", min_value=1, step=1, key="ID")
-    add_date = st.text_input( "Flight Date to add (format: YYYY-MM-DD)",
-        placeholder="e.g., 2025-06-01, 2025-05-10"
+    from1 = st.text_input("Flight From", key="from_location")
+    to1 = st.text_input("Flight Destination", key="to_location")
+    add_date = st.text_input("Flight Date (format: YYYY-MM-DD)", 
+        placeholder="e.g., 2025-06-10",
+        key="add_date"
     )
+    flight_status = st.text_input(
+        "Flight Status",
+        placeholder="e.g., Not Taken Off, Completed, Delayed",
+        key="flight_status"
+    )
+
 
     if st.button("Add Flight"):
         add_date_clean = add_date.strip()
@@ -59,15 +89,16 @@ with right_col:
             st.warning("❗ Please enter only one date.")
         elif add_date_clean == "":
             st.warning("❗ Please enter a valid date.")
+        elif from1 == "" or to1 == "":
+            st.warning("❗ Please enter valid departure and destination locations.")
         else:
-            response = requests.post(f"{API_url}/add_flight/{ID}/{add_date_clean}")
+            response = requests.post(f"{API_url}/add_flight/{ID}/{add_date_clean}/{from1}/{to1}/{flight_status}")
             if response.status_code == 200:
-                st.success("✅ Flight date added successfully!")
+                st.success("✅ New Flight added successfully!")
             elif response.status_code == 400:
                 st.error("❌ Flight date already exists!")
             else:
                 st.error("❌ Failed to add flight. Please check the ID.")
-
 
 
 
@@ -90,7 +121,7 @@ with right_col:
     st.markdown("## 🗑️ Delete Flight")
     id1 = st.number_input("Enter Plane ID to delete the flight", min_value=0, step=1, key="id1")
     delete_date = st.text_input("Enter the date of flight to cancel", 
-        placeholder="e.g., 2025-06-01, 2025-05-10")
+        placeholder="e.g., 2025-05-10")
     
     if st.button("Delete Flight"):
         # Strip whitespace and validate single date
@@ -109,28 +140,76 @@ with right_col:
 
 
 
-
-
 # View Planes Section
 st.header("📋 View All Planes")
-
 try:
     res = requests.get(f"{API_url}/planes")
-    planes = res.json()
+    flights = res.json()
 
-    if not planes:
-        st.info("No planes found.")
+    if not flights:
+        st.info("No flights found.")
     else:
-        df = pd.DataFrame(planes)
-        df['flight_dates'] = df['flight_dates'].apply(lambda d: ", ".join(d) if isinstance(d, list) else str(d))
+        df = pd.DataFrame(flights)
 
+        # Group flights into planes with routes
+        planes_dict = defaultdict(lambda: {
+            "id": None, "name": "", "model": "", "capacity": 0, "routes": []
+        })
 
-        display_df = df[['id', 'name', 'model', 'capacity', 'flight_dates']]
-        st.dataframe(display_df)
+        for _, row in df.iterrows():
+            key = (row['id'], row['name'], row['model'], row['capacity'])
+            plane_entry = planes_dict[key]
+            plane_entry['id'] = row['id']
+            plane_entry['name'] = row['name']
+            plane_entry['model'] = row['model']
+            plane_entry['capacity'] = row['capacity']
+            plane_entry['routes'].append({
+                'date': row['date'],
+                'from': row['from'],
+                'to': row['to'],
+                'status': row['status']
+            })
 
-        # CSV export
+        # Convert to list of grouped planes
+        grouped_planes = list(planes_dict.values())
+
+        # Display in 4 cards per row
+        for i in range(0, len(grouped_planes), 4):
+            cols = st.columns(4)
+            for j in range(4):
+                if i + j < len(grouped_planes):
+                    plane = grouped_planes[i + j]
+                    with cols[j]:
+                        with st.expander(f"{plane['name']} - {plane['model']}"):
+                            st.markdown(f"""
+                            **✈️ Plane ID**: `{plane['id']}`  
+                            **🧾 Name**: {plane['name']}  
+                            **🛠️ Model**: {plane['model']}  
+                            **👥 Capacity**: {plane['capacity']}  
+                            """)
+                            st.markdown("**📍 Routes:**")
+                            for route in plane['routes']:
+                                st.markdown(f"- **{route['from']} → {route['to']}** on `{route['date']}` – Status: *{route['status']}*")
+
+        # Optionally download grouped data as flat CSV
         csv = df.to_csv(index=False)
-        st.download_button("📥 Download as CSV", csv, "planes.csv", "text/csv")
+        st.download_button("📥 Download Flights as CSV", csv, "flights.csv", "text/csv")
+
 except Exception as e:
     st.error("🚫 Could not connect to Flask API.")
     st.exception(e)
+
+
+
+#Chat model section
+st.header("Ask assistant")
+if st.session_state.page == "home":
+
+    if st.button("💬 Open Chat"):
+        st.session_state.page = "chat"
+
+
+elif st.session_state.page == "chat":
+    from chat_page import show_chat
+    show_chat()
+     
