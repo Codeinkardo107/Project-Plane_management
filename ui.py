@@ -52,7 +52,7 @@ with left_col:
                     "name": name,
                     "model": model,
                     "capacity": int(capacity),
-                    "flight_date": flight_date,
+                    "date": flight_date,
                     "from": from1,
                     "to": to1,
                     "status": flight_status,
