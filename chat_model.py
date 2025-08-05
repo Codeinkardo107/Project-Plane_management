@@ -8,10 +8,11 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
-
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import LLMChain
 from langchain.schema.runnable import RunnableMap
+import fitz
+
 
 class AllRetriever:
     def get_relevant_documents(self, query):
@@ -21,6 +22,15 @@ class AllRetriever:
         return [Document(page_content=doc) for doc in raw_docs]
 
 retriever = AllRetriever()
+
+
+def extract_pdf_text(pdf_path: str) -> str:
+    text = ""
+    with fitz.open(pdf_path) as doc:
+        for page in doc:
+            text += page.get_text()
+    return text
+
 
 
 # Set Gemini API key
@@ -49,7 +59,6 @@ vectordb = Chroma.from_documents(split_docs, embedding, persist_directory="./chr
 vectordb.persist()
 
 
-
 retriever = AllRetriever()
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.2)
 
@@ -65,8 +74,8 @@ Context:
 {context}
 
 Question:
-{question}
-""")
+{question} """)
+
 
 # Combine retrieved documents into a single prompt
 llm_chain = LLMChain(llm=llm, prompt=prompt_template)
@@ -81,5 +90,20 @@ rag_chain = RunnableMap({
 }) | stuff_chain
 
 # ✅ Final interface
-def process_chat(query: str):
-    return rag_chain.invoke({"question": query})
+def process_chat(query: str, pdf_text: str = ""):
+    # Combine the documents from Chroma
+    flight_docs = retriever.get_relevant_documents(query)
+    
+    # If PDF text exists, wrap it in a Document
+    if pdf_text:
+        pdf_doc = Document(page_content=f"PDF Content:\n{pdf_text}")
+        all_docs = [pdf_doc]
+    else:
+        all_docs = flight_docs
+
+    # Run through the RAG chain
+    return rag_chain.invoke({
+        "question": query,
+        "context": all_docs,
+        "today": today
+    })
