@@ -69,3 +69,4 @@ id,name,model,capacity,date,from,to,status
 958,Blue Dart Aviation,Boeing 757,200,2025-06-01,Mumbai,Colombo,Completed
 958,Blue Dart Aviation,Boeing 757,200,2025-06-04,Hyderabad,Lucknow,Completed
 444,Fury,F14,3,2025-07-07,Delhi,Mumbai,Delayed
+444,Fury,F14,3,2025-08-08,Delhi,Paris,Not taken off
