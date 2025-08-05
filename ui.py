@@ -20,6 +20,7 @@ if "page" not in st.session_state:
 #st.set_page_config(page_title="Plane Management System", layout="wide")
 # Also will add flight destination for further use
 
+
 # Add Plane Section
 # Create 3 columns: content on the left, right and empty in the middle
 left_col, _, right_col = st.columns([2, 1, 1])
