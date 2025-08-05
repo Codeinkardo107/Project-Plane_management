@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import csv, os, ast, datetime
 from flask_cors import CORS
 from chat_model import process_chat
+from chat_page import pdf_text
 
 app = Flask(__name__)
 CORS(app)
@@ -39,6 +40,7 @@ def load_data():
 
             data.append(row)
         return data
+    
 
 def save_data(data):
     with open(CSV_file, mode='w', newline='') as f:
@@ -62,7 +64,6 @@ def save_data(data):
 @app.route('/')
 def home():
     return "🛩️ Flask API for Plane Management is Running!. \U0001F600"
-
 
 
 @app.route('/about')
@@ -181,7 +182,7 @@ def delete_flight(plane_id, date_to_remove):
 def chat():
     user_input = request.json.get("message")
     try:
-        response = process_chat(user_input)
+        response = process_chat(user_input, pdf_text)
         return jsonify({"response": response})
     except Exception as e:
         return jsonify({"response": f"❌ Error: {str(e)}"}), 500
